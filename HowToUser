@@ -1,0 +1,40 @@
+# How To Use Our Software.
+
+# Step 1: Install Python
+python.org or microsoft store
+
+# Step 2: Install selenium and colorama
+Open your Terminal and type: pip install selenium and then pip install colorama
+(THIS IS IMPORTANT SO PLEASE DO THIS)
+
+# Step 3: Update or Install Chrome
+https://www.google.com/chrome/
+
+# Step 4: Install latest version of chrome driver (make sure it matches your chrome version)
+https://googlechromelabs.github.io/chrome-for-testing/
+
+# Step 5: Open Files Explore and locate This Pc
+Then Open Your Local Disc C
+When Your Inside Of LDC, Right Click And Create A New Folder Named "chromedriver"
+
+# Step 6: Put your chromedriver.exe inside of chromedriver folder
+(you should get the chromedriver.exe after you installed the latest version of chromium)
+
+# Activation Steps
+
+Step 1: Open Terminal
+Step 2: type: venv\Script\activate
+Step 3: type: cd downloads or wherever the robloxacc.py is located
+Step 4: type: py robloxacc.py
+Step 5: Enter the amount of accounts you want to create "iterations"
+Step 6: Enter the username starter
+Step 7: Enter how long the usernames will be
+Step 8: Click Create Accounts
+Step 9: Let the script do its thing
+
+# MOST IMPORTANT PART OF ALL
+
+AFTER THE SIGN UP BUTTON IS CLICKED, YOU HAVE 1 MINUTES TO DO THE AUTH STEPS OR VERIFICATION PROCESS WHICH IS THE 1 - XX PICTURE THING
+AFTER THE PAGE RELOADS AND YOU SEE THE ACCOUNT IS CREATED CLOSE THE BROWSER AND DO IT AGAIN, ONCE FINISHED WITH ALL ACCOUNTS, YOU SHOULD REALIZE THAT A FILE IS NOW ON YOUR PC CALLED "ACCOUNTS" THAT HAS ALL THE INFORMATION TO EACH ACCOUNT.
+
+ENJOY!
