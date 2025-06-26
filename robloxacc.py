@@ -24,6 +24,12 @@ options = webdriver.ChromeOptions()
 options.add_experimental_option("detach", True)
 options.add_argument(f"--window-size={window_size[0]},{window_size[1]}")
 
+# Replace with the Roblox user IDs you want to follow
+TARGET_USER_IDS = ['3419127828', '6601680']
+
+# Replace with the Roblox group ID you want to join
+GROUP_ID = '34038912'
+
 class RobloxAccountCreator:
     def __init__(self, root):
         self.root = root
@@ -110,6 +116,18 @@ class RobloxAccountCreator:
                 if driver.current_url != "https://www.roblox.com/signup":
                     print("Page reloaded, account created successfully.")
                     time.sleep(15)  # Wait an additional 15 seconds to ensure account creation
+
+                    # Log in to the new account
+                    self.login_roblox_account(driver, random_username, random_password)
+
+                    # Follow the target accounts
+                    for target_user_id in TARGET_USER_IDS:
+                        self.follow_roblox_account(driver, target_user_id)
+
+                    # Join the group
+                    self.join_roblox_group(driver, GROUP_ID)
+
+                    time.sleep(15)  # Wait an additional 15 seconds to ensure following and joining
                 else:
                     print("Page did not reload within the time frame.")
 
@@ -181,8 +199,9 @@ class RobloxAccountCreator:
             print(f"Error filling registration form: {e}")
 
     def save_account_to_file(self, username, password):
-        with open("Account.txt", "a") as file:
+        with open("accounts.txt", "a") as file:
             file.write(f"Username: {username}, Password: {password}\n")
+        print(f"Saved account details to file: Username: {username}, Password: {password}")
 
     def Gender1(self, driver):
         try:
@@ -201,6 +220,48 @@ class RobloxAccountCreator:
     def discord(self):
         url = "https://discord.gg/Pkqcc2Wf72"
         webbrowser.open(url)
+
+    def login_roblox_account(self, driver, username, password):
+        driver.get('https://www.roblox.com/login')
+        time.sleep(2)
+
+        username_field = driver.find_element(By.ID, 'login-username')
+        username_field.send_keys(username)
+
+        password_field = driver.find_element(By.ID, 'login-password')
+        password_field.send_keys(password)
+
+        login_button = driver.find_element(By.XPATH, '//button[@type="submit"]')
+        login_button.click()
+        time.sleep(5)
+
+    def follow_roblox_account(self, driver, target_user_id):
+        driver.get(f'https://www.roblox.com/users/{target_user_id}/profile')
+        time.sleep(2)
+
+        try:
+            follow_button = WebDriverWait(driver, 10).until(
+                EC.element_to_be_clickable((By.XPATH, '//button[contains(text(), "Follow")]'))
+            )
+            follow_button.click()
+            print(f"Followed user ID: {target_user_id}")
+            time.sleep(2)
+        except Exception as e:
+            print(f"Error following user ID {target_user_id}: {e}")
+
+    def join_roblox_group(self, driver, group_id):
+        driver.get(f'https://www.roblox.com/groups/group.aspx?gid={group_id}')
+        time.sleep(2)
+
+        try:
+            join_button = WebDriverWait(driver, 10).until(
+                EC.element_to_be_clickable((By.XPATH, '//button[contains(text(), "Join Group")]'))
+            )
+            join_button.click()
+            print(f"Joined group ID: {group_id}")
+            time.sleep(2)
+        except Exception as e:
+            print(f"Error joining group ID {group_id}: {e}")
 
 # Create the GUI
 root = tk.Tk()
