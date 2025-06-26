@@ -2,6 +2,7 @@
 
 A lightweight browser automation tool built using Python, Selenium, and Colorama. It automates browser tasks using Chromedriver and outputs colorful terminal logs. Great for educational purposes, personal productivity, or learning web automation.
 
+# MAKE SURE TO READ THE HOWTOUSE TO MAKE SURE YOU USE THIS SOFTWARE CORRECTLY
 ---
 
 ## 🚀 Features
