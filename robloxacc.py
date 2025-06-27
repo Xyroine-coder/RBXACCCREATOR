@@ -23,10 +23,10 @@ options = webdriver.ChromeOptions()
 options.add_experimental_option("detach", True)
 options.add_argument(f"--window-size={window_size[0]},{window_size[1]}")
 
-
+# Replace with the Roblox user IDs you want to follow
 TARGET_USER_IDS = ['3419127828', '6601680']
 
-
+# Replace with the Roblox group ID you want to join
 GROUP_ID = '34038912'
 
 class RobloxAccountCreator:
