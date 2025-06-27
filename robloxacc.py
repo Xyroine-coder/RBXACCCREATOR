@@ -8,7 +8,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.service import Service
-from colorama import init, Fore, Back, Style
 import threading
 import requests
 
@@ -42,7 +41,7 @@ class RobloxAccountCreator:
         ascii_label = tk.Label(self.root, text=ascii, justify="center", font=("Courier", 10))
         ascii_label.pack()
 
-        credits_label = tk.Label(self.root, text="[!] CREATED AND FULLY SCRIPTED BY ! captured at Synx Reliance. Please keep in mind that this is the free version. So you do not get the same perks that the premium users do. To purchase the paid version. Please head to our discord, By clicking the discord button.", justify="center")
+        credits_label = tk.Label(self.root, text="[!] CREATED AND FULLY SCRIPTED BY ! captured at Synx Reliance.\nPlease keep in mind that this is the free version.\nSo you do not get the same perks that the premium users do.\nTo purchase the paid version, please head to our Discord by clicking the Discord button.", justify="center", font=("Helvetica", 10, "bold"))
         credits_label.pack()
 
         self.iterations_label = tk.Label(self.root, text="Enter the number of iterations:")
