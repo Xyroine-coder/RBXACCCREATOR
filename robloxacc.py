@@ -132,6 +132,9 @@ class RobloxAccountCreator:
 
                 driver.quit()
 
+                # Implement 5-minute cooldown
+                time.sleep(300)
+
             except Exception as e:
                 print(f"Error creating account: {e}")
                 driver.quit()
